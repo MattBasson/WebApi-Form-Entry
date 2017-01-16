@@ -50,6 +50,25 @@ namespace Leads.Web.API
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             HttpContext.Current.Response.AddHeader("CACHE-CONTROL", "NO-CACHE");
+            //Determine if Access controll allow origin should be configurable.
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
+            {
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE");
+
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, token");
+                HttpContext.Current.Response.AddHeader("Access-Control-Max-Age", "1728000");
+                HttpContext.Current.Response.End();
+            }
+        }
+
+        protected void Application_PreSendRequestHeaders()
+        {
+            Response.Headers.Remove("Server");
+            //Response.Headers.Set("Server", "Wouldnt you like to know");
+            Response.Headers.Remove("X-AspNet-Version"); //alternative to above solution
+            Response.Headers.Remove("X-AspNetMvc-Version"); //alternative to above solution
+            Response.Headers.Remove("X-Powered-By");
         }
     }
 }
