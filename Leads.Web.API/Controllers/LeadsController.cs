@@ -109,7 +109,6 @@ namespace Leads.Web.API.Controllers
                 ResponseData = new SubmissionClosedViewModel() { Closed = isClosed}
             };
             return ResponseHelper.FormatMessage(JsonConvert.SerializeObject(response));
-
         }
     }    
 }
