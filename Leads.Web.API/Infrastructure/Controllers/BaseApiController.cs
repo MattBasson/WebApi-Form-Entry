@@ -13,9 +13,9 @@ namespace Leads.Web.APInfrastructure.Controllers
     {
         protected readonly ILeadsUnitOfWork _LeadsUnitOfWork;
         protected readonly IApplicationSettings _settings;
-        public BaseApiController(ILeadsUnitOfWork winFreeFuelUnitOfWork, IApplicationSettings settings)
+        public BaseApiController(ILeadsUnitOfWork unitOfWork, IApplicationSettings settings)
         {
-            _LeadsUnitOfWork = winFreeFuelUnitOfWork;
+            _LeadsUnitOfWork = unitOfWork;
             _settings = settings;
         }
         
